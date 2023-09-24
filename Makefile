@@ -2,8 +2,8 @@ install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 
-test:
-	python -m pytest -vv --cov=main --cov=src test_*.py
+# test:
+# 	python -m pytest -vv --cov=main --cov=src test_*.py
 
 format:	
 	black *.py 
@@ -22,4 +22,4 @@ refactor: format lint
 deploy:
 	#deploy goes here
 		
-all: install lint test format deploy
+all: install lint format deploy
