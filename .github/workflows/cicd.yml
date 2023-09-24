@@ -8,8 +8,7 @@ on:
 
 jobs:
   lint_test:
-    name: Python ${{ matrix.python-version }} on 
-    ${{startsWith(matrix.os, 'windows-') && 'Windows' || 'Linux' }}
+    name: name: Python ${{ matrix.python-version }} on ${{ startsWith(matrix.os, 'macos-') && 'macOS' || startsWith(matrix.os, 'windows-') && 'Windows' || 'Linux' }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
