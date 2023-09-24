@@ -19,7 +19,10 @@ container-lint:
 
 refactor: format lint
 
-deploy:
-	#deploy goes here
+run: 
+	python3 main.py
+
+# deploy:
+# 	#deploy goes here
 		
-all: install lint format deploy
+all: install lint format run
