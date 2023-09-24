@@ -1,26 +1,23 @@
 """
-1. Run test so that Python 3.8 and fails
+Matrix build run with Python 3.8 and below should fail
 """
 
 # main.py
-from pysurvival.datasets import Dataset
-from pysurvival.utils.metrics import concordance_index
-from src.survival import build_coxph_model, build_mtlr_model
+from src.merge_operator import merge_dicts_new, merge_dicts_old
 
-def main():
-    # Loading and splitting a simple example into train/test sets
-    X_train, T_train, E_train, X_test, T_test, E_test = \
-        Dataset('simple_example').load_train_test()
+def merge_dicts_new_way(dict1, dict2):
+    # Test the new way (Python 3.9 merge operator)
+    result_new = merge_dicts_new(dict1, dict2)
+    print("Merged dictionary (Python 3.9):", result_new)
 
-    # Checking the model performance for CoxPH model
-    coxph_model = build_coxph_model(X_train, T_train, E_train)
-    c_index1 = concordance_index(model=coxph_model, X=X_test, T=T_test, E=E_test)
-    print("CoxPH model c-index = {:.2f}".format(c_index1))
-
-    # Checking the model performance for MTLR model
-    mtlr_model = build_mtlr_model(X_train, T_train, E_train)
-    c_index2 = concordance_index(model=mtlr_model, X=X_test, T=T_test, E=E_test)
-    print("MTLR model c-index = {:.2f}".format(c_index2))
+def merge_dicts_old_way(dict1, dict2):
+    # Test the old way (using a loop)
+    result_old = merge_dicts_old(dict1, dict2)
+    print("Merged dictionary (Old way):", result_old)
 
 if __name__ == "__main__":
-    main()
+    dict1 = {'a': 1, 'b': 2}
+    dict2 = {'b': 3, 'c': 4}
+    
+    merge_dicts_new_way(dict1, dict2)
+    merge_dicts_old_way(dict1, dict2)
